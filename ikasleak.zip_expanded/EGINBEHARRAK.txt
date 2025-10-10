@@ -1,0 +1,29 @@
+interface ListADT<T>
++ void setDeskr(String nom);
++ String getDeskr();
++ T removeFirst();
++ T removeLast();
++ T remove(T elem);
++ void removeAll(T elem);
++ T first();
++ T last();
++ ListADT<T> clone();
++ boolean contains(T elem);
++ T find(T elem);
++ boolean isEmpty();
++ int size();
++ Iterator<T> iterator();
+
+interface OrderedListADT<T>
++ add(T elem)
++ intersection(OrderedDoubleLinkedList<T> z)
+
+interface UnorderedListADT<T>
++ addToFront(T elem)
++ addToRear(T elem)
++ addAfter(T elem, T target)
+
+class DoubleLinkedList<T>
+- first: Node
+- deskr: String
+- count: int
