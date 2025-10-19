@@ -27,13 +27,36 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public T removeFirst() {
 	// listako lehen elementua kendu da
 	// Aurrebaldintza: 
-		// KODEA OSATU ETA KOSTUA KALKULATU
+		// KODEA OSATU ETA KOSTUA KALKULATU      O(1)
+		Node<T> first;
+		if (this.last == null) //lista hutsa denean
+			return null;
+		if (this.last.next == this.last) { //elementu bakarra
+				first = this.last;
+				this.last = null;
+			} else { // hainbat elementu
+				first = this.last.next;
+				this.last.next = first.next;
+				first.next.prev = last;
+			}
+	return first.data;
 	}
 
 	public T removeLast() {
 	// listako azken elementua kendu da
 	// Aurrebaldintza: 
-		// KODEA OSATU ETA KOSTUA KALKULATU
+		// KODEA OSATU ETA KOSTUA KALKULATU      O(1)
+		Node<T> emaitza = this.last;
+		if (this.last == null) //lista hutsa denean
+			return null;
+		if (this.last.next == this.last) { //elementu bakarra
+			last=null;
+		} else { // hainbat elementu
+			emaitza.next.prev = emaitza.prev;
+			emaitza.prev.next = emaitza.next;
+			last = emaitza.prev;
+		}
+		return emaitza.data;
     }
 
 
@@ -41,22 +64,68 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// Aurrebaldintza: 
 	// Balio hori listan baldin badago, bere lehen agerpena ezabatuko dut. Kendutako objektuaren erreferentzia 
         //  bueltatuko du (null ez baldin badago)
-
-		// KODEA OSATU ETA KOSTUA KALKULATU
-        };
+		// KODEA OSATU ETA KOSTUA KALKULATU     O(n) kasurik txarrenean
+		Node<T> unekoa = this.last;
+		Node<T> emaitza = null;
+		if (this.last == null) //lista hutsa denean
+			return null;
+		do{
+			unekoa=unekoa.next;
+			if(unekoa.data.equals(elem)) {
+				emaitza = unekoa;
+				unekoa.next.prev = unekoa.prev;
+				unekoa.prev.next = unekoa.next;
+				if(unekoa == this.last) { //azkena bada
+					this.last = unekoa.prev;
+				}
+			}
+		}while(emaitza == null && unekoa != this.last);
+		
+		if (emaitza==null) return null;
+		else return emaitza.data;
+        }
 		
 	public void removeAll(T elem) {
 	// Aurrebaldintza: 
 	// Balio zehatz baten agerpen guztiak ezabatzen ditu
 	
-		// KODEA OSATU ETA KOSTUA KALKULATU
-    };
+		// KODEA OSATU ETA KOSTUA KALKULATU      O(n)
+		if (this.last == null) // lista hutsa denean
+	        return;
+	    Node<T> unekoa = this.last.next; // lehenengo elementua
+	    Node<T> hasiera = unekoa;        // hasierako nodoa gogoratu loopetik ondo irtetzeko
+	    do {
+	        Node<T> hurrengoa = unekoa.next; // gorde hurrengo nodoa
+	        if (unekoa.data.equals(elem)) {
+	            // nodoa ezabatu
+	            unekoa.next.prev = unekoa.prev;
+	            unekoa.prev.next = unekoa.next;
+	            // Azkena bada, last eguneratu
+	            if (unekoa == this.last) {
+	                this.last = unekoa.prev;
+	            }
+	            // lista hutsik gelditzen bada
+	            if (unekoa.next == unekoa) {
+	                this.last = null;
+	            }
+	            // hasierakoa bazen, hasiera eguneratu
+	            if (unekoa == hasiera) {
+	                hasiera = hurrengoa;
+	            }
+	        }
+	        unekoa = hurrengoa; // hurrengo nodora pasatu
+	    } while (this.last != null && unekoa != hasiera);
+	}
 
 	public T first() {
 	// listako lehen elementua ematen du
 	   // KODEA OSATU ETA KOSTUA KALKULATU
+		if (this.last == null) { // lista hutsa denean
+	        return null;
+	    } else {
+	        return this.last.next.data; 
+	    }
 	}
-
 	public T last() {
 	// listako azken elementua ematen du
 	   // KODEA OSATU ETA KOSTUA KALKULATU
@@ -116,3 +185,4 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+
