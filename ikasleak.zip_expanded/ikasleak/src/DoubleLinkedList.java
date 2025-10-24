@@ -151,18 +151,40 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public boolean isEmpty() { 
-	// KODEA OSATU ETA KOSTUA KALKULATU
+		if(this.count==0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public int size() { 
-	// KODEA OSATU ETA KOSTUA KALKULATU
+		return this.count;
 	}
 	
 	/** Return an iterator to the stack that iterates through the items . */ 
-	   public Iterator<T> iterator() { return new ListIterator(); } 
+	    public Iterator<T> iterator() { return new ListIterator(); } 
 
 	   // an iterator, doesn't implement remove() since it's optional 
-	   private class ListIterator implements Iterator<T> { 
+	   private class ListIterator implements Iterator<T> {
+		   Node<T> unekoa = null;
+		   int kont = 0;
+		@Override
+		public boolean hasNext() {
+			return kont<size();
+		}
+
+		@Override
+		public T next() {
+			if(!hasNext()) {
+				throw new NoSuchElementException();
+			}
+			T data = unekoa.data;
+			unekoa = unekoa.next;
+			kont++;
+			return data;
+		} 
 
 		// KODEA OSATU 
 	   } // private class
@@ -185,4 +207,5 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+
 
