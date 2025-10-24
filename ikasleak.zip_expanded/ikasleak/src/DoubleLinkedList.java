@@ -180,6 +180,9 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			if(!hasNext()) {
 				throw new NoSuchElementException();
 			}
+			if(unekoa==null) {
+				unekoa=first();
+			}
 			T data = unekoa.data;
 			unekoa = unekoa.next;
 			kont++;
@@ -207,5 +210,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+
 
 
