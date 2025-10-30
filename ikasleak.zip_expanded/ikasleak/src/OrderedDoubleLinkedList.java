@@ -64,9 +64,10 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 
 	public OrderedDoubleLinkedList<T> intersection(OrderedDoubleLinkedList<T> zerrenda){
 		OrderedDoubleLinkedList<T> emaitza = new OrderedDoubleLinkedList<T>();
+		boolean amaituta = false;
 		Node<T> unekoa1 = this.last.next;
 		Node<T> unekoa2 = zerrenda.last.next;
-		while(unekoa1 != this.last && unekoa2 != this.last) {
+		while(unekoa1 != this.last && unekoa2 != zerrenda.last) {
 			//(1) adabegia lortu
 			if ((unekoa1.data).compareTo(unekoa2.data) == 0) { //unekoa1 == unekoa2
 				emaitza.add(unekoa1.data);
@@ -82,11 +83,32 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 			if((unekoa1.data).compareTo(unekoa2.data) == 0) {
 				emaitza.add(unekoa1.data);
 			}
+		} else if (unekoa1 == this.last && unekoa2 != zerrenda.last) {
+			while (unekoa2 != zerrenda.last && !amaituta) {
+				if ((unekoa1.data).compareTo(unekoa2.data) < 0) {}
+				else if ((unekoa1.data).compareTo(unekoa2.data) == 0) {
+					emaitza.add(unekoa1.data);
+					amaituta = true;
+				} else if ((unekoa1.data).compareTo(unekoa2.data) > 0) {
+					unekoa2 = unekoa2.next;
+				}
+			}
+		}else if (unekoa1 != this.last && unekoa2 == zerrenda.last) {
+			while (unekoa1 != this.last && !amaituta) {
+				if ((unekoa2.data).compareTo(unekoa1.data) < 0) {}
+				else if ((unekoa2.data).compareTo(unekoa1.data) == 0) {
+					emaitza.add(unekoa1.data);
+					amaituta = true;
+				} else if ((unekoa2.data).compareTo(unekoa1.data) > 0) {
+					unekoa1 = unekoa1.next;
+				}
+			}
 		}
 		return emaitza;
 	}
 
 
 }
+
 
 
