@@ -8,14 +8,35 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 
 	}
 
-	public void addToRear(T elem) {
+public void addToRear(T elem) {
 	// bukaeran gehitu
-		// KODEA OSATU ETA KOSTUA KALKULATU
-
+	//KOSTUA: O(1); konstantea
+		Node<T> berria = new Node<T>(elem);
+        if (this.last == null ) {
+			this.last = berria;
+			count = 1;
+		} else if (last.next == null) {
+			last.next = berria;
+			berria.prev = last;
+			berria.next = last;
+			last.prev = berria;
+			this.last = berria;
+			this.count = this.count + 1;
+		} else {
+			Node<T> first = last.next;
+			this.last.next = berria;
+			berria.prev = this.last;
+			berria.next = first;
+			first.prev = berria;
+			last = berria;
+			this.count = this.count + 1;
+		}
 	}
+
 	
 	public void addAfter(T elem, T target) {
 		// KODEA OSATU ETA KOSTUA KALKULATU
 	}
 
 }
+
