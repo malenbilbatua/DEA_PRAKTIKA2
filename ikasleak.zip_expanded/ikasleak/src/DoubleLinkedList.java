@@ -127,8 +127,14 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	    }
 	}
 	public T last() {
-	// listako azken elementua ematen du
-	   // KODEA OSATU ETA KOSTUA KALKULATU
+		if (this.last.equals(null)) {
+			return null;
+		}
+		else {
+			return this.last();
+		}
+		
+		//KOSTUA: O(1)
 	}
 
 	public DoubleLinkedList<T> clone(){
@@ -210,6 +216,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+
 
 
 
