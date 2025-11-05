@@ -3,9 +3,19 @@ package labo2;
 public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
 	
 	public void addToFront(T elem) {
-	// hasieran gehitu
-		// KODEA OSATU ETA KOSTUA KALKULATU
-
+		Node<T> berria = new Node<T>(elem);
+		if(isEmpty()) {
+			last = berria;
+			count++;
+		}
+		else {
+			Node<T> lehena = last.next;
+			lehena.prev = berria;
+			berria.next = lehena;
+			berria.prev = last;
+			last.next = berria;
+			count++;
+		}
 	}
 
 public void addToRear(T elem) {
@@ -69,5 +79,6 @@ public void addToRear(T elem) {
 		}
 	}
 }
+
 
 
