@@ -131,7 +131,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			return null;
 		}
 		else {
-			return this.last();
+			return this.last.data;
 		}
 		
 		//KOSTUA: O(1)
@@ -139,21 +139,55 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public DoubleLinkedList<T> clone(){
 		// Zerrendaren kopia bat itzultzen du (ez du punteroa bikoizten)
+		
+		DoubleLinkedList<T> kopia = new DoubleLinkedList<>();
+	    if (isEmpty()) {return kopia;}
+	    else {
+	    Node<T> oraingo = last;
+	    while (oraingo.prev != null) {
+	    	oraingo = oraingo.prev;}
+	    while (oraingo != null) {
+	        Node<T> berria = new Node<>(oraingo.data);
+	        if (kopia.last == null) {
+	        	kopia.last = berria;
+	        } else {
+	            
+	        	berria.prev = kopia.last;
+	            kopia.last.next = berria;
+	            kopia.last = berria;
+	        }
+	        kopia.count++;
+	        oraingo = oraingo.next;
+	    }
+	    return kopia;
+	
 	   // KODEA OSATU ETA KOSTUA KALKULATU		
-	} 
+	} }
 
 	public boolean contains(T elem) {
-	// Egiazkoa bueltatuko du aurkituz gero, eta false bestela
-		      if (isEmpty())
-		          return false;
+	    if (isEmpty()) {return false;}
 
-		      		// KODEA OSATU ETA KOSTUA KALKULATU
-		   }
+	    Node<T> uneko = last;
+	    while (uneko != null) {
+	        if (uneko.data.equals(elem))
+	            {return true;}
+	        uneko = uneko.prev; 
+	    }
+	    return false;
+	    // KOSTUA: O(n)
+	}
 
 	public T find(T elem) {
-	// Elementua bueltatuko du aurkituz gero, eta null bestela
+	    if (isEmpty()) {return null;}
 
-		// KODEA OSATU ETA KOSTUA KALKULATU
+	    Node<T> uneko = last;
+	    while (uneko != null) {
+	        if (uneko.data.equals(elem))
+	        	{return uneko.data;}	//aurkitu
+	        uneko = uneko.prev; 
+	    }
+	    return null;
+	    // KOSTUA: O(n)
 	}
 
 	public boolean isEmpty() { 
@@ -216,6 +250,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+
 
 
 
