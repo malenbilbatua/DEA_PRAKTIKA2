@@ -143,9 +143,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		DoubleLinkedList<T> kopia = new DoubleLinkedList<>();
 	    if (isEmpty()) {return kopia;}
 	    else {
-	    Node<T> oraingo = last;
-	    while (oraingo.prev != null) {
-	    	oraingo = oraingo.prev;}
+	    Node<T> oraingo = last.next;
 	    while (oraingo != null) {
 	        Node<T> berria = new Node<>(oraingo.data);
 	        if (kopia.last == null) {
@@ -250,6 +248,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+
 
 
 
