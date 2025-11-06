@@ -1,7 +1,8 @@
 package labo2;
 
 public class OrderedDoubleLinkedList<T extends Comparable<T> extends DoubleLinkedList<T> implements OrderedListADT<T> {
-	
+
+/****************************NUEVO AÑADIDO*******/
 public void add(T elem){	//ORDENA: String motan Alfabetikoki
 	//Elementua lista ordenatu batean gehitu
 	//KOSTUA:
@@ -24,7 +25,6 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 				berria.prev = this.last;
 				count = count + 1;
 			}
-/****************************NUEVO AÑADIDO*******/
 		} else if ((this.last.data).compareTo(berria.data) <= 0) {
 				Node<T> first = this.last.next;
 				this.last.next = berria;
@@ -33,7 +33,6 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 				berria.next = first;
 				this.last = berria;
 				count = count + 1;
-/****************************NUEVO AÑADIDO*******/
 		}else { //2+ elementu
 			boolean aurkitua = false;
 			boolean lehenengoa = false;
@@ -64,6 +63,7 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 			}
 		} 
 	}
+	/****************************NUEVO AÑADIDO*******/
 
 	public OrderedDoubleLinkedList<T> intersection(OrderedDoubleLinkedList<T> zerrenda){
 		OrderedDoubleLinkedList<T> emaitza = new OrderedDoubleLinkedList<T>();
@@ -120,6 +120,7 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 
 
 }
+
 
 
 
