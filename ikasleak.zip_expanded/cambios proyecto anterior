@@ -1,1 +1,4 @@
-
+En el programa nagusi, he cambiado el metodo argitalpenOrdenatuakErakutsi(), que antes creaba un ArrayList<Argitalpen> y lo ordenaba de forma ineficiente.
+Ahora el metodo mediante un for para todos los valores del HashMap(kostua:O(n)), añade a una OrderedDoubleLinkedList cada argitalpen (kostua:O(1).
+Así, el método que antes tenía kostua: O(n^2), ahora tiene kostua: O(n).
+Esto se consigue gracias a que el metodo add(T elem) de la clase OrderedDoubleLinkedList añade cada elemento directamente a su posición ordenada.
