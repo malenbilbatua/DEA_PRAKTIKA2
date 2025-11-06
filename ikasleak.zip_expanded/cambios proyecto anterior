@@ -18,5 +18,8 @@ Así, el método que antes tenía kostua: O(n^2), ahora tiene kostua: O(n).
 Esto se consigue gracias a que el metodo add(T elem) de la clase OrderedDoubleLinkedList añade cada elemento directamente a su posición ordenada.
 
 [Extras]
-Aparte de lo arriba que es un poco lo más grande, he tenido que cambiar alguna cosilla de programa nagusia y alguna otra clase, pero muy muy poquito.
+- He tenido que cambiar las clases de Egile y Argitalpen, y hacerlas extends Comparable consigo mismas. A raíz de eso, he tenido que hacer dos @Override del
+método compareTo, para que compare en el caso de los Egiles los izenak, y en el caso de los argitalpen los titulu
+
+- Aparte de lo arriba que es un poco lo más grande, he tenido que cambiar alguna cosilla de programa nagusia y alguna otra clase, pero muy muy poquito.
 Así que no creo ni que merezca la pena explicarlo
