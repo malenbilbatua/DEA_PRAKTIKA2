@@ -4,7 +4,7 @@ public class OrderedDoubleLinkedList<T extends Comparable<T> extends DoubleLinke
 	
 public void add(T elem){	//ORDENA: String motan Alfabetikoki
 	//Elementua lista ordenatu batean gehitu
-	//KOSTUA: O(1)
+	//KOSTUA:
 		Node<T> berria = new Node<T>(elem);
 		if (this.last == null) { //elementurik ez
 			this.last = berria;
@@ -24,7 +24,17 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 				berria.prev = this.last;
 				count = count + 1;
 			}
-		} else { //2+ elementu
+/****************************NUEVO AÑADIDO*******/
+		} else if ((this.last.data).compareTo(berria.data) <= 0) {
+				Node<T> first = this.last.next;
+				this.last.next = berria;
+				berria.prev = this.last;
+				first.prev = berria;
+				berria.next = first;
+				this.last = berria;
+				count = count + 1;
+/****************************NUEVO AÑADIDO*******/
+		}else { //2+ elementu
 			boolean aurkitua = false;
 			boolean lehenengoa = false;
 			Node<T> unekoa = this.last.next;
@@ -39,14 +49,7 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 						hurrengoa = hurrengoa.next;
 				}
 			}
-			if (unekoa == this.last && (unekoa.data).compareTo(berria.data) <= 0) {
-				unekoa.next = berria;
-				berria.prev = unekoa;
-				hurrengoa.prev = berria;
-				berria.next = hurrengoa;
-				this.last = berria;
-				count = count + 1;
-			} else if (aurkitua) {
+			if (aurkitua) {
 				unekoa.next = berria;
 				berria.prev = unekoa;
 				hurrengoa.prev = berria;
@@ -85,7 +88,11 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 			}
 		} else if (unekoa1 == this.last && unekoa2 != zerrenda.last) {
 			while (unekoa2 != zerrenda.last && !amaituta) {
-				if ((unekoa1.data).compareTo(unekoa2.data) < 0) {}
+				if ((unekoa1.data).compareTo(unekoa2.data) < 0) {
+/****************************NUEVO AÑADIDO*******/
+					amaituta = true;
+/****************************NUEVO AÑADIDO*******/
+				}
 				else if ((unekoa1.data).compareTo(unekoa2.data) == 0) {
 					emaitza.add(unekoa1.data);
 					amaituta = true;
@@ -95,7 +102,11 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 			}
 		}else if (unekoa1 != this.last && unekoa2 == zerrenda.last) {
 			while (unekoa1 != this.last && !amaituta) {
-				if ((unekoa2.data).compareTo(unekoa1.data) < 0) {}
+				if ((unekoa2.data).compareTo(unekoa1.data) < 0) {
+/****************************NUEVO AÑADIDO*******/
+					amaituta = true;
+/****************************NUEVO AÑADIDO*******/
+				}
 				else if ((unekoa2.data).compareTo(unekoa1.data) == 0) {
 					emaitza.add(unekoa1.data);
 					amaituta = true;
@@ -109,6 +120,7 @@ public void add(T elem){	//ORDENA: String motan Alfabetikoki
 
 
 }
+
 
 
 
