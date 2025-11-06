@@ -1,4 +1,22 @@
+[Inplementatu proiektuan UnorderedDoubleLinkedList]
+En la clase Egile, he cambiado la clase del atributo argitalpenak, que antes era un HashMap y ahora es UnorderedDoubleLinkedList<Argitalpen>.
+Al cambiar ese atributo también he tenido que cambiar el eraikitzaile de Egile y algunos de sus métodos:
+- Los setter y getter de la lista argitalpena (solo había que cambiar el tipo)
+- getEgilearenArgitalpenak(): he tenido que cambiar el método entero, y usar el Iterator que hemos implementado para recorrer la LinkedList entera una sola
+vez e ir imprimiendo los titulos de los argitalpen.
+
+Al haber cambiado la clase de la lista, también he tenido que modificar un método de ListaEgileEMA:
+- argitalpenakErakutsi(String kodea): básicamente lo mismo que antes, cambiar el for que había para cada elemento del HashMap por un
+while con el iterator.
+
+También he tenido que cambiar el método de Egile de la parte de fitxategien kudeaketa, para que use el metodo addToRear(pArgitalpen)
+
+[Inplementatu proiektuan OrderedDoubleLinkedList]
 En el programa nagusi, he cambiado el metodo argitalpenOrdenatuakErakutsi(), que antes creaba un ArrayList<Argitalpen> y lo ordenaba de forma ineficiente.
 Ahora el metodo mediante un for para todos los valores del HashMap(kostua:O(n)), añade a una OrderedDoubleLinkedList cada argitalpen (kostua:O(1).
 Así, el método que antes tenía kostua: O(n^2), ahora tiene kostua: O(n).
 Esto se consigue gracias a que el metodo add(T elem) de la clase OrderedDoubleLinkedList añade cada elemento directamente a su posición ordenada.
+
+[Extras]
+Aparte de lo arriba que es un poco lo más grande, he tenido que cambiar alguna cosilla de programa nagusia y alguna otra clase, pero muy muy poquito.
+Así que no creo ni que merezca la pena explicarlo
